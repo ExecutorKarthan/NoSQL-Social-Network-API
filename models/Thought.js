@@ -1,7 +1,11 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 const thoughtSchema = new Schema(
   {
+    assignmentId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
     thoughtText: {
       type: String,
       required: true,
@@ -20,21 +24,9 @@ const thoughtSchema = new Schema(
     reactions:
     [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'reaction',
-      },
-    ],
-  },
-);
-
-thoughtSchema
-  .virtual('reactionSchema')
-  .get(function () {
-    const reactionSchema = new Schema(
-      {
         reactionId: {
           type: Schema.Types.ObjectId,
-          default: new Schema.Types.ObjectId(), 
+          default: () => new Types.ObjectId(), 
         },
         reactionBody: {
           type: String,
@@ -50,18 +42,21 @@ thoughtSchema
             default: Date.now(),
         },
       },
-    ); 
-    reactionSchema
-      .virtual('formatTimestamp')
-      .get(function(date) {
-        return date.toLocaleDateString();
-      })  
-  })
+    ],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
+
+thoughtSchema
   .virtual('formatTimestamp')
   .get(function(date) {
     return date.toLocaleDateString();
   })
 
-const Thought = model('thought', thoughtSchema);
+//const Thought = model('thought', thoughtSchema);
 
-module.exports = Thought;
+module.exports = thoughtSchema;
