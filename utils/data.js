@@ -50,6 +50,7 @@ const createUser = (array, int) =>{
         username
     }
 
+    username = usernames[int]
     const thoughtText = thoughtBase[int]
     const thoughts = {thoughtText, 
         username, 
@@ -57,7 +58,6 @@ const createUser = (array, int) =>{
     }
     //const friends = [usernames[Math.floor(Math.random()*5)], usernames[Math.floor(Math.random()*5)]]
     const email = emails[int]
-    username = usernames[int]
     const user = {
         username,
         email,
