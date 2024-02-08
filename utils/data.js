@@ -1,4 +1,4 @@
-const createUser = (array, int) =>{
+const createUser = (userArray, int) =>{
     const usernames = [
         'joe45',
         'hank77',
@@ -15,6 +15,20 @@ const createUser = (array, int) =>{
         'hammer.away@gmail.com'
     ]
     
+    const username = usernames[int]
+    const email = emails[int]
+    const user = {
+        username,
+        email,
+    }
+
+    userArray.push(user)
+    
+    return userArray
+}
+
+const  createThoughts = async (userArray, thoughtArray, i) => {
+
     const thoughtBase = [
         "I like hank!",
         "Sally is cool",
@@ -32,42 +46,24 @@ const createUser = (array, int) =>{
     ] 
     
     var reactionBody = reactionOps[Math.floor(Math.random()*5)]
-    var username = usernames[Math.floor(Math.random()*5)]
-    const reaction1 = {
-        reactionBody, 
-        username
-    }
-
-    reactionBody = reactionOps[Math.floor(Math.random()*5)]
-    username = usernames[Math.floor(Math.random()*5)]
-    const reaction = {
-        reactionBody, 
-        username
-    }
+    var username = userArray[Math.floor(Math.random()*5)].username
 
     const reactions = {
         reactionBody, 
         username
     }
 
-    username = usernames[int]
-    const thoughtText = thoughtBase[int]
-    const thoughts = {thoughtText, 
+    const thoughtText = thoughtBase[i]
+    username = userArray[i].username
+    const thoughts = {
+        thoughtText,
         username, 
         reactions,
     }
-    //const friends = [usernames[Math.floor(Math.random()*5)], usernames[Math.floor(Math.random()*5)]]
-    const email = emails[int]
-    const user = {
-        username,
-        email,
-        thoughts,
-        //friends
-    }
 
-    array.push(user)
-    
-    return array
+    thoughtArray.push(thoughts)
+
+    return thoughtArray
 }
 
-module.exports = {createUser}
+module.exports = {createUser, createThoughts}

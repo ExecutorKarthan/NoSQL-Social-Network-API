@@ -20,7 +20,7 @@ module.exports = {
 
       const userObj = {
         users,
-        friendCount: await friendCount(),
+        //friendCount: await friendCount(),
       };
 
       res.json(userObj);
@@ -30,9 +30,9 @@ module.exports = {
     }
   },
 
-  async getSingleStudent(req, res) {
+  async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ username: req.params.username })
+      const user = await User.findOne({ userID: req.params.userId })
         .select('-__v');
 
       if (!user) {
@@ -41,7 +41,7 @@ module.exports = {
 
       res.json({
         user,
-        friendCount: await friendCount(req.params.username),
+        //friendCount: await friendCount(req.params.userId),
       });
     } catch (err) {
       console.log(err);
@@ -51,15 +51,15 @@ module.exports = {
 
   async deleteUser(req, res) {
     try {
-      const user = await User.findOneAndRemove({ username: req.params.username });
+      const user = await User.findOneAndRemove({ userID: req.params.userId });
 
       if (!user) {
         return res.status(404).json({ message: 'No such user exists' });
       }
 
       const thought = await thoughtSchema.findOneAndUpdate(
-        { thoughts: req.params.username },
-        { $pull: { thoughts: req.params.username } },
+        { thoughts: req.params.userId },
+        { $pull: { thoughts: req.params.userId } },
         { new: true }
       );
 
