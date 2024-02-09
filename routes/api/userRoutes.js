@@ -16,7 +16,7 @@ router.route('/').get(getUsers).post(createUser);
 router
     .route('/:UserId')
     .get(getSingleUser)
-    .post(updateSingleUser)
+    .put(updateSingleUser)
     .delete(deleteUser)
 
 router

@@ -21,12 +21,10 @@ connection.once('open', async () => {
 
 
   for (let i = 0; i < 5; i++) {
-    console.log("Creating users")
     createUser(users, i)
   }
   
   for (let x = 0; x < 5; x++) {
-    console.log("Creating thoughts")
     createThoughts(users, thoughts, x)
   }
 
@@ -45,11 +43,6 @@ connection.once('open', async () => {
     currentUser.save()
   }
 
-  // console.table(users);
-  // console.table(thoughts);
-  console.log(allUsers)
-  console.log(allThoughts)
-  //console.table(reactions)
   console.info('Seeding complete!');
   process.exit(0);
 });

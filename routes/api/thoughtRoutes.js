@@ -15,11 +15,9 @@ router.route('/').get(getThoughts).post(createThought);
 router.route('/:ThoughtId')
     .get(getSingleThought)
     .put(updateSingleThought)
+    .post(createReaction)
 
 router.route('/:ThoughtId/reactions/:ReactionId')
-    .get(getSingleThought)
-    .put(updateSingleThought)
-    .put(createReaction)
     .delete(deleteReaction)
 
 module.exports = router;

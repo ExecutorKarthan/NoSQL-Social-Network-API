@@ -28,8 +28,6 @@ module.exports = {
 
   async getSingleThought(req, res) {
     try {
-      console.log(req.params)
-      console.log(req.params.ThoughtId)
       const thought = await Thought.findOne({ _id: req.params.ThoughtId })
         .select('-__v');
 
@@ -48,7 +46,6 @@ module.exports = {
 
   async updateSingleThought(req, res) {
     try {
-      console.log(req.params)
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.ThoughtId },
         { $set: req.body },
@@ -68,7 +65,6 @@ module.exports = {
 
   async createReaction(req, res) {
     try {
-      console.log(req.params)
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.ThoughtId },
         { $push: {reactions: req.body} },

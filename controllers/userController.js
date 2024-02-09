@@ -67,17 +67,19 @@ module.exports = {
 
   async deleteUser(req, res) {
     try {
+      const userName = await User.findOne({_id: req.params.UserId})
+
+      console.log(userName)
+
+      const thought = await thoughtSchema.deleteMany(
+        { username: userName.username }
+      );
+
       const user = await User.findOneAndRemove({ _id: req.params.UserId });
 
       if (!user) {
         return res.status(404).json({ message: 'No such user exists' });
       }
-
-      const thought = await thoughtSchema.findOneAndUpdate(
-        { thoughts: req.params.userId },
-        { $pull: { thoughts: req.params.userId } },
-        { new: true }
-      );
 
       if (!thought) {
         return res.status(404).json({
@@ -94,10 +96,8 @@ module.exports = {
 
   async addFriend(req, res) {
     try {
-      console.log("Body - person being altered", req.body.UserId)
-      console.log("params - friend being removed", req.params.FriendId)
       const user = await User.findOneAndUpdate(
-        { _id: req.body.UserId },
+        { _id: req.params.UserId },
         { $push: { friends: req.params.FriendId } },
         { new: true }
       );
@@ -115,10 +115,8 @@ module.exports = {
 
   async deleteFriend(req, res) {
     try {
-      console.log("Body - person being altered", req.body.UserId)
-      console.log("params - friend being removed", req.params.FriendId)
       const user = await User.findOneAndUpdate(
-        { _id: req.body.UserId },
+        { _id: req.params.UserId },
         { $pull: { friends: req.params.FriendId } },
         { new: true }
       );
