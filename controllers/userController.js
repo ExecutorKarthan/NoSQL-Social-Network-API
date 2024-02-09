@@ -95,10 +95,10 @@ module.exports = {
   async addFriend(req, res) {
     try {
       console.log("Body - person being altered", req.body.UserId)
-      console.log("params - friend being removed", req.params.UserId)
+      console.log("params - friend being removed", req.params.FriendId)
       const user = await User.findOneAndUpdate(
         { _id: req.body.UserId },
-        { $push: { friends: req.params.UserId } },
+        { $push: { friends: req.params.FriendId } },
         { new: true }
       );
 
@@ -116,10 +116,10 @@ module.exports = {
   async deleteFriend(req, res) {
     try {
       console.log("Body - person being altered", req.body.UserId)
-      console.log("params - friend being removed", req.params.UserId)
+      console.log("params - friend being removed", req.params.FriendId)
       const user = await User.findOneAndUpdate(
         { _id: req.body.UserId },
-        { $pull: { friends: req.params.UserId } },
+        { $pull: { friends: req.params.FriendId } },
         { new: true }
       );
 
