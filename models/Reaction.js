@@ -1,6 +1,10 @@
+//Import mongoose to make the schema
 const { Schema } = require('mongoose');
+const formatTime = require('../utils/timeFormatter')
 
+//Create a schema for use in the Thought model
 const reactionSchema = new Schema(
+  //Define the schema's attributes
   {
     reactionBody: {
       type: String,
@@ -17,19 +21,18 @@ const reactionSchema = new Schema(
     {
       type: Date,
       default: Date.now(),
+      get: formatTime 
     },
   },
+  //Allow virutals to be used to alter how the data is displayed
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
+    id: false,
   }
 );
 
-reactionSchema
-  .virtual('getDate')
-  .get(function() {
-    return `${this.createdAt.toDateString()}`
-  })
-
+//Export the schema for us
 module.exports = reactionSchema;

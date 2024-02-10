@@ -1,7 +1,11 @@
+//Import the required modules to function
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction')
+const formatTime = require('../utils/timeFormatter')
 
+//Create a schema for defining thoughts
 const thoughtSchema = new Schema(
+  //Define thoughts attributes
   {
     thoughtText: {
       type: String,
@@ -12,6 +16,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
+      get: formatTime 
     },
     username: {
       type: String,
@@ -19,25 +24,27 @@ const thoughtSchema = new Schema(
     },
     reactions:[reactionSchema],
   },
+  //Allow virtuals to be used to alter how the data is displayed
   {
+    toObject:{
+      virtuals: true,
+    },
     toJSON: {
       virtuals: true,
+      getters: true,
     },
   }
 );
-
-thoughtSchema
-  .virtual('getDate')
-  .get(function() {
-    return `${this.createdAt.toDateString()}`
-  })
-
+ 
+//Create a virtual that will count how many reactions a thought has
 thoughtSchema
   .virtual('reactionCount')
   .get(function () {
     return this.reactions.length;
   })
 
+//Load all of the previously reviewed properties into a model
 const Thought = model('thought', thoughtSchema);
 
+//Export the model for use
 module.exports = Thought;
