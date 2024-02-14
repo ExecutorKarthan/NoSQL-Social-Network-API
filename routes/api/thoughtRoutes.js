@@ -7,6 +7,7 @@ const {
     updateSingleThought,
     getThoughts,
     getSingleThought,
+    deleteThought,
     createReaction,
     deleteReaction
 } = require('../../controllers/thoughtController');
@@ -14,10 +15,14 @@ const {
 //Define a URL for getting thoughts from the database
 router.route('/').get(getThoughts).post(createThought);
 
-//Define a URL for getting or updating a thought or creating a reaction
+//Define a URL for getting or updating a thought
 router.route('/:ThoughtId')
     .get(getSingleThought)
     .put(updateSingleThought)
+    .delete(deleteThought)
+
+//Define a URL for creating a reaction
+router.route('/:ThoughtId/reactions')
     .post(createReaction)
 
 //Define a URL for deleting reactions

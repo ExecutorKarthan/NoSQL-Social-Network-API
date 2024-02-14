@@ -22,10 +22,7 @@ module.exports = {
     //Attempt to find all users and display the information as a single object
     try {
       const users = await User.find();
-      const userObj = {
-        users,
-      };
-      res.json(userObj);
+      res.json(users);
     } 
     //If there is an error, report it here
     catch (err) {
@@ -45,9 +42,9 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' })
       }
       //If the user is found, return their data in JSON
-      res.json({
+      res.json(
         user,
-      });
+      );
     } 
     //If there is an error, report it here
     catch (err) {

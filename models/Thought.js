@@ -22,7 +22,38 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions:[reactionSchema],
+    reactions:[
+    //Create a schema for use in the Thought model
+      new Schema(
+        //Define the schema's attributes
+        {
+          reactionBody: {
+            type: String,
+            required: true,
+            minLength: 1,
+            maxLength: 280, 
+          },
+          username: 
+          {
+            type: String,
+            required: true,
+          },
+          createdAt:
+          {
+            type: Date,
+            default: Date.now(),
+            get: formatTime 
+          },
+        },
+        //Allow virutals to be used to alter how the data is displayed
+        {
+          toJSON: {
+            virtuals: true,
+            getters: true,
+          },
+          id: false,
+        }
+      )],
   },
   //Allow virtuals to be used to alter how the data is displayed
   {

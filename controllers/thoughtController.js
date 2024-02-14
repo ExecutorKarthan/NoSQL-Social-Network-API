@@ -21,10 +21,7 @@ module.exports = {
     try {
       //Attempt to find all thoughts and display the information as a single object
       const thoughts = await Thought.find()
-      const thoughtObj = {
-        thoughts,
-      };
-      res.json(thoughtObj);
+      res.json(thoughts);
     } 
     //If there is an error, report it here
     catch (err) {
@@ -44,9 +41,9 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with that ID' })
       }
       //If the thought is found, return their data in JSON
-      res.json({
+      res.json(
         thought,
-      });
+      );
     } 
     //If there is an error, report it here
     catch (err) {
@@ -70,6 +67,31 @@ module.exports = {
       }
       //If the thought is found, return their data in JSON
       res.json(thought);
+    } 
+    //If there is an error, report it here
+    catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
+
+  //Create a route to delete a thought
+  async deleteThought(req, res) {
+    try {
+      //Find and delete the thought
+      const thought = await Thought.findOneAndRemove({ _id: req.params.ThoughtId });
+      //If the thought is not found, provide a message
+      if (!thought) {
+        return res.status(404).json({ message: 'No such thought exists' });
+      }
+      //If no thoughts are are present, provide a notification
+      if (!thought) {
+        return res.status(404).json({
+          message: 'No thoughts found with that ID',
+        });
+      }
+      //Verify the update was a success
+      res.json({ message: 'Thought successfully deleted' });
     } 
     //If there is an error, report it here
     catch (err) {
