@@ -1,4 +1,4 @@
-# Model-View-Controller-Exemplar
+# NoSQL-Social-Network-API
 This is an exemplar for my use of NoSQL, specifically Mongoose. This is a backend application, so it has no GUI and can be viewed in its video <a href="./assets/No-SQL-Demo.mp4"> here</a>.
 
 ## Description
