@@ -25,7 +25,6 @@ The following GIFs show this programs capabilities.
 4) Reactions Routes Demo<br>
 ![Reactions Routes Demo Gif](./assets/reactions.gif) 
 <br>
-A video walkthrough of the proper commands and their output can be found <a href="./assets/No-SQL-Demo.mp4"> here</a>.
 
 ## License
 This product is protected by a [MIT License](http://choosealicense.com/licenses/mit).
