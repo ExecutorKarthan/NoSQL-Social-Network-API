@@ -1,5 +1,5 @@
 # Model-View-Controller-Exemplar
-This is an exemplar for my use of NoSQL, specifically Mongoose. This is a backend application, so it has no GUI and can be viewed in its video <a href="./assets/No-SQL-Demo.mkv"> here</a>.
+This is an exemplar for my use of NoSQL, specifically Mongoose. This is a backend application, so it has no GUI and can be viewed in its video <a href="./assets/No-SQL-Demo.mp4"> here</a>.
 
 ## Description
 
@@ -25,7 +25,7 @@ The following GIFs show this programs capabilities.
 4) Reactions Routes Demo<br>
 ![Reactions Routes Demo Gif](./assets/reactions.gif) 
 <br>
-A video walkthrough of the proper commands and their output can be found <a href="./assets/E-commerce-backend.mp4"> here</a>.
+A video walkthrough of the proper commands and their output can be found <a href="./assets/No-SQL-Demo.mp4"> here</a>.
 
 ## License
 This product is protected by a [MIT License](http://choosealicense.com/licenses/mit).

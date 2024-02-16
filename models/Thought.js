@@ -1,6 +1,5 @@
 //Import the required modules to function
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction')
 const formatTime = require('../utils/timeFormatter')
 
 //Create a schema for defining thoughts
